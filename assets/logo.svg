@@ -1,94 +1,48 @@
-<svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg" width="200" height="80">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 160" role="img" aria-labelledby="title desc">
+  <title id="title">Zanoon</title>
+  <desc id="desc">Logo sombre et violet de Zanoon, avec monogramme Z et aura abstraite.</desc>
   <defs>
-    <!-- Dark version gradient -->
-    <linearGradient id="logoDarkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#9333ea;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    <linearGradient id="violet" x1="26" y1="18" x2="126" y2="134" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9D5FF"/>
+      <stop offset=".34" stop-color="#B56CFF"/>
+      <stop offset=".72" stop-color="#7C2DDB"/>
+      <stop offset="1" stop-color="#421073"/>
     </linearGradient>
-    
-    <!-- Light version gradient -->
-    <linearGradient id="logoLightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    <linearGradient id="edge" x1="36" y1="27" x2="119" y2="126" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8B4FE"/>
+      <stop offset="1" stop-color="#6D28D9"/>
     </linearGradient>
-    
-    <!-- Glow filter -->
-    <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- Shadow effect -->
-    <filter id="logoShadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    <radialGradient id="aura" cx="50%" cy="50%" r="50%">
+      <stop stop-color="#A855F7" stop-opacity=".46"/>
+      <stop offset=".48" stop-color="#7E22CE" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#581C87" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-55%" y="-55%" width="210%" height="210%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 .28  0 0.45 0 0 .02  0 0 1 0 .5  0 0 0 .85 0" result="purple"/>
+      <feMerge><feMergeNode in="purple"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  
-  <!-- Aura background circle (very subtle) -->
-  <circle cx="18" cy="40" r="16" fill="#9333ea" opacity="0.15" filter="url(#logoGlow)"/>
-  <circle cx="18" cy="40" r="13" fill="#a855f7" opacity="0.08" filter="url(#logoGlow)"/>
-  
-  <!-- Main Z letter with depth effect -->
-  <g filter="url(#logoShadow)">
-    <!-- Shadow layer behind -->
-    <path d="M 8 30 L 28 30 L 8 50 L 28 50" 
-          stroke="#4c1d95" 
-          stroke-width="3.5" 
-          fill="none" 
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          opacity="0.3"/>
-    
-    <!-- Main stroke with gradient and glow -->
-    <path d="M 8 28 L 28 28 L 8 48 L 28 48" 
-          stroke="url(#logoDarkGradient)" 
-          stroke-width="3" 
-          fill="none" 
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          filter="url(#logoGlow)"
-          opacity="0.95"/>
-  </g>
-  
-  <!-- Accent dot (aura element) -->
-  <circle cx="28" cy="28" r="1.5" fill="#c084fc" opacity="0.6"/>
-  <circle cx="8" cy="48" r="1.5" fill="#c084fc" opacity="0.6"/>
-  
-  <!-- Text "ZANOON" -->
-  <text x="38" y="55" 
-        font-family="Arial, Helvetica, sans-serif" 
-        font-size="26" 
-        font-weight="800" 
-        letter-spacing="2.5"
-        fill="#1f2937"
-        filter="url(#logoShadow)">
-    ZANOON
-  </text>
-  
-  <!-- Violet accent line under logo -->
-  <line x1="38" y1="62" x2="130" y2="62" 
-        stroke="url(#logoDarkGradient)" 
-        stroke-width="2" 
-        opacity="0.7"
-        stroke-linecap="round"/>
-  
-  <!-- Define dark/light mode via style -->
-  <style>
-    @media (prefers-color-scheme: light) {
-      text {
-        fill: #f3f4f6;
-      }
-      path[stroke="url(#logoDarkGradient)"] {
-        stroke: url(#logoLightGradient);
-      }
-      line {
-        stroke: url(#logoLightGradient);
-      }
-    }
-  </style>
+
+  <!-- Abstract shadow aura: original geometry, no external assets. -->
+  <circle cx="80" cy="80" r="67" fill="url(#aura)"/>
+  <path d="M31 77C43 38 72 19 111 23M25 95c21 37 56 47 96 28M46 132c31 15 61 3 82-20" fill="none" stroke="#8B35E8" stroke-width="2" stroke-linecap="round" opacity=".36"/>
+  <path d="M35 54c-10 17-11 37-4 54M119 43c11 17 11 42 0 60" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" opacity=".48"/>
+
+  <!-- Faceted obsidian emblem. -->
+  <path d="M80 21 124 46v52l-44 41-44-41V46z" fill="#0B0711" stroke="url(#edge)" stroke-width="2"/>
+  <path d="m80 21 44 25-44 16-44-16z" fill="#211132" opacity=".94"/>
+  <path d="m36 98 44-36v77z" fill="#100819"/>
+  <path d="m124 98-44-36v77z" fill="#170B24"/>
+
+  <!-- The Z is a single, decisive energy stroke. -->
+  <path d="M54 51h53L58 108h53" fill="none" stroke="#3B1065" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+  <path d="M54 48h53L58 105h53" fill="none" stroke="url(#violet)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <circle cx="107" cy="48" r="3" fill="#F3E8FF"/>
+  <circle cx="58" cy="105" r="2.5" fill="#D8B4FE"/>
+
+  <!-- Wordmark: exact casing intentionally retained as Zanoon. -->
+  <text x="154" y="91" fill="#F7F2FF" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="700" letter-spacing="1.5">Zanoon</text>
+  <path d="M158 111h78" stroke="#A855F7" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="247" cy="111" r="2" fill="#D8B4FE"/>
 </svg>
