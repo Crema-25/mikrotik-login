@@ -1,0 +1,94 @@
+<svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg" width="200" height="80">
+  <defs>
+    <!-- Dark version gradient -->
+    <linearGradient id="logoDarkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9333ea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Light version gradient -->
+    <linearGradient id="logoLightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Shadow effect -->
+    <filter id="logoShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Aura background circle (very subtle) -->
+  <circle cx="18" cy="40" r="16" fill="#9333ea" opacity="0.15" filter="url(#logoGlow)"/>
+  <circle cx="18" cy="40" r="13" fill="#a855f7" opacity="0.08" filter="url(#logoGlow)"/>
+  
+  <!-- Main Z letter with depth effect -->
+  <g filter="url(#logoShadow)">
+    <!-- Shadow layer behind -->
+    <path d="M 8 30 L 28 30 L 8 50 L 28 50" 
+          stroke="#4c1d95" 
+          stroke-width="3.5" 
+          fill="none" 
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity="0.3"/>
+    
+    <!-- Main stroke with gradient and glow -->
+    <path d="M 8 28 L 28 28 L 8 48 L 28 48" 
+          stroke="url(#logoDarkGradient)" 
+          stroke-width="3" 
+          fill="none" 
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#logoGlow)"
+          opacity="0.95"/>
+  </g>
+  
+  <!-- Accent dot (aura element) -->
+  <circle cx="28" cy="28" r="1.5" fill="#c084fc" opacity="0.6"/>
+  <circle cx="8" cy="48" r="1.5" fill="#c084fc" opacity="0.6"/>
+  
+  <!-- Text "ZANOON" -->
+  <text x="38" y="55" 
+        font-family="Arial, Helvetica, sans-serif" 
+        font-size="26" 
+        font-weight="800" 
+        letter-spacing="2.5"
+        fill="#1f2937"
+        filter="url(#logoShadow)">
+    ZANOON
+  </text>
+  
+  <!-- Violet accent line under logo -->
+  <line x1="38" y1="62" x2="130" y2="62" 
+        stroke="url(#logoDarkGradient)" 
+        stroke-width="2" 
+        opacity="0.7"
+        stroke-linecap="round"/>
+  
+  <!-- Define dark/light mode via style -->
+  <style>
+    @media (prefers-color-scheme: light) {
+      text {
+        fill: #f3f4f6;
+      }
+      path[stroke="url(#logoDarkGradient)"] {
+        stroke: url(#logoLightGradient);
+      }
+      line {
+        stroke: url(#logoLightGradient);
+      }
+    }
+  </style>
+</svg>

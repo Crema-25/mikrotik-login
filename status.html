@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zanoon - Statut de connexion">
+  <meta name="theme-color" content="#0f172a">
+  <title>Zanoon - Statut de connexion</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button id="themeToggle" class="theme-toggle" title="Basculer le thème">🌙</button>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <img src="assets/logo.svg" alt="Zanoon" class="logo">
+      <h1 class="header-title">Zanoon</h1>
+      <p class="header-subtitle">Statut de votre connexion</p>
+    </header>
+
+    <!-- Connection Status Card -->
+    <div class="card">
+      <h2 style="text-align: center; margin-bottom: 2rem; color: var(--color-success);">
+        ✓ Connexion établie
+      </h2>
+
+      <!-- Session Information -->
+      <div id="sessionStatus">
+        <div class="info-grid">
+          <!-- Username -->
+          <div class="info-item">
+            <div class="info-label">Utilisateur</div>
+            <div class="info-value" id="displayUsername">
+              $(username)
+            </div>
+          </div>
+
+          <!-- IP Address -->
+          <div class="info-item">
+            <div class="info-label">Adresse IP</div>
+            <div class="info-value" id="displayIP">
+              $(ip)
+            </div>
+          </div>
+
+          <!-- Session Duration -->
+          <div class="info-item">
+            <div class="info-label">⏱ Durée restante</div>
+            <div class="info-value" id="displayDuration">
+              $(session-time-remaining)
+            </div>
+          </div>
+
+          <!-- Total Session Time -->
+          <div class="info-item">
+            <div class="info-label">Temps connecté</div>
+            <div class="info-value" id="displayConnectedTime">
+              $(uptime)
+            </div>
+          </div>
+
+          <!-- Data Downloaded -->
+          <div class="info-item">
+            <div class="info-label">📥 Données reçues</div>
+            <div class="info-value" id="displayBytesIn">
+              $(bytes-in)
+            </div>
+          </div>
+
+          <!-- Data Uploaded -->
+          <div class="info-item">
+            <div class="info-label">📤 Données envoyées</div>
+            <div class="info-value" id="displayBytesOut">
+              $(bytes-out)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session Details Message -->
+      <div style="background-color: var(--bg-secondary); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-top: var(--spacing-xl); border: 1px solid var(--color-border);">
+        <p style="text-align: center; color: var(--color-text-secondary);">
+          Vous êtes actuellement connecté au réseau WiFi Zanoon.<br>
+          <span style="font-size: 0.9rem; color: var(--color-text-muted);">
+            Vos informations de session sont affichées ci-dessus
+          </span>
+        </p>
+      </div>
+
+      <!-- Logout Button -->
+      <a href="$(link-logout)" id="logoutBtn" class="btn btn-primary btn-block" style="margin-top: 2rem;">
+        Se déconnecter
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Quick Info Section -->
+    <section class="card">
+      <h3 style="text-align: center; margin-bottom: 1rem;">Informations de service</h3>
+      <ul class="link-list">
+        <li>
+          <a href="mailto:zanoon752@gmail.com">
+            <span>📧</span>
+            <span>Contacter le support</span>
+          </a>
+        </li>
+        <li>
+          <a href="tel:+261380134754">
+            <span>📞</span>
+            <span>Appeler le support</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:window.location.reload()">
+            <span>🔄</span>
+            <span>Rafraîchir cette page</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p style="margin: 0;">© 2025 Zanoon. Tous droits réservés.</p>
+      <p style="margin: 0.5rem 0 0; font-size: 0.75rem; color: var(--color-text-muted);">
+        Service WiFi Premium Authentifié
+      </p>
+    </footer>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="js/app.js"></script>
+
+  <!-- Status page specific script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Function to format bytes to human readable format
+      function formatBytes(bytes) {
+        if (!bytes || bytes === '0' || bytes === '') return '0 B';
+        bytes = parseInt(bytes, 10);
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+      }
+
+      // Function to format seconds to human readable time
+      function formatTime(seconds) {
+        if (!seconds || seconds === '0' || seconds === '') return '0 secondes';
+        seconds = parseInt(seconds, 10);
+        
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        
+        const parts = [];
+        if (hours > 0) parts.push(hours + 'h');
+        if (minutes > 0) parts.push(minutes + 'm');
+        if (secs > 0) parts.push(secs + 's');
+        
+        return parts.join(' ') || '0s';
+      }
+
+      // Clean up MikroTik variables for display
+      function cleanupDisplay() {
+        const elements = {
+          username: document.getElementById('displayUsername'),
+          ip: document.getElementById('displayIP'),
+          duration: document.getElementById('displayDuration'),
+          connected: document.getElementById('displayConnectedTime'),
+          bytesIn: document.getElementById('displayBytesIn'),
+          bytesOut: document.getElementById('displayBytesOut'),
+        };
+
+        // Check for MikroTik variable syntax and provide fallback
+        for (const [key, el] of Object.entries(elements)) {
+          if (el) {
+            let text = el.textContent.trim();
+            
+            // Hide if it contains MikroTik variable syntax
+            if (text.includes('$(') || text === '') {
+              el.textContent = 'N/A';
+              el.style.color = 'var(--color-text-muted)';
+            } else {
+              // Format specific fields
+              if (key === 'bytesIn' || key === 'bytesOut') {
+                el.textContent = formatBytes(text);
+              } else if (key === 'duration' || key === 'connected') {
+                el.textContent = formatTime(text);
+              }
+            }
+          }
+        }
+      }
+
+      // Initialize on load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cleanupDisplay);
+      } else {
+        cleanupDisplay();
+      }
+
+      // Setup logout confirmation
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+          if (!confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+            e.preventDefault();
+            return false;
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

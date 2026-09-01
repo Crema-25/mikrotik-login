@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zanoon - Erreur">
+  <meta name="theme-color" content="#0f172a">
+  <title>Zanoon - Erreur</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button id="themeToggle" class="theme-toggle" title="Basculer le thème">🌙</button>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <img src="assets/logo.svg" alt="Zanoon" class="logo">
+      <h1 class="header-title">Zanoon</h1>
+      <p class="header-subtitle">Une erreur s'est produite</p>
+    </header>
+
+    <!-- Error Card -->
+    <div class="card">
+      <div style="text-align: center; padding: var(--spacing-xl) 0;">
+        <!-- Error Icon -->
+        <div style="font-size: 3rem; margin-bottom: var(--spacing-lg); animation: slideDown 0.6s ease-out;">
+          ⚠️
+        </div>
+
+        <h2 style="color: var(--color-error); margin-bottom: var(--spacing-lg);">
+          Une erreur s'est produite
+        </h2>
+
+        <!-- Error Message -->
+        <div id="errorMessage" style="background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+          <p style="color: var(--color-error); margin: 0; font-weight: 500;">
+            $(error)
+          </p>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-top: var(--spacing-sm); margin-bottom: 0;">
+            Veuillez réessayer ou contacter le support si le problème persiste.
+          </p>
+        </div>
+
+        <!-- Error Details (for debugging) -->
+        <div style="background-color: var(--bg-secondary); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-xl); border: 1px solid var(--color-border);">
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin: 0; word-break: break-all;">
+            Erreur: <span id="errorCode" style="font-family: monospace;">$(status)</span>
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+          <a href="$(link-login-only)" class="btn btn-primary">
+            Se reconnecter
+          </a>
+          <button onclick="window.history.back()" class="btn btn-secondary">
+            Retour
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Troubleshooting Section -->
+    <section class="card">
+      <h3 style="text-align: center; margin-bottom: 1rem;">💡 Conseils de dépannage</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="padding: var(--spacing-md) 0; border-bottom: 1px solid var(--color-border); display: flex; gap: var(--spacing-md);">
+          <span style="flex-shrink: 0; color: var(--color-primary); font-weight: bold;">1.</span>
+          <span style="color: var(--color-text-secondary);">Vérifiez votre connexion Internet</span>
+        </li>
+        <li style="padding: var(--spacing-md) 0; border-bottom: 1px solid var(--color-border); display: flex; gap: var(--spacing-md);">
+          <span style="flex-shrink: 0; color: var(--color-primary); font-weight: bold;">2.</span>
+          <span style="color: var(--color-text-secondary);">Vérifiez vos identifiants</span>
+        </li>
+        <li style="padding: var(--spacing-md) 0; border-bottom: 1px solid var(--color-border); display: flex; gap: var(--spacing-md);">
+          <span style="flex-shrink: 0; color: var(--color-primary); font-weight: bold;">3.</span>
+          <span style="color: var(--color-text-secondary);">Rafraîchissez la page et réessayez</span>
+        </li>
+        <li style="padding: var(--spacing-md) 0; display: flex; gap: var(--spacing-md);">
+          <span style="flex-shrink: 0; color: var(--color-primary); font-weight: bold;">4.</span>
+          <span style="color: var(--color-text-secondary);">Contactez le support si le problème persiste</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Support Section -->
+    <section class="card">
+      <h3 style="text-align: center; margin-bottom: 1.5rem;">Besoin d'aide ?</h3>
+      
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">📧 Email</div>
+          <a href="mailto:zanoon752@gmail.com" class="info-value" style="color: var(--color-primary);">
+            Envoyer un email
+          </a>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--color-text-muted);">
+            zanoon752@gmail.com
+          </p>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-label">📞 Téléphone</div>
+          <a href="tel:+261380134754" class="info-value" style="color: var(--color-primary);">
+            Appeler
+          </a>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--color-text-muted);">
+            +261 38 01 347 54
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p style="margin: 0;">© 2025 Zanoon. Tous droits réservés.</p>
+      <p style="margin: 0.5rem 0 0; font-size: 0.75rem; color: var(--color-text-muted);">
+        Service WiFi Premium Authentifié
+      </p>
+    </footer>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="js/app.js"></script>
+
+  <!-- Error page specific script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Clean up error display
+      const errorMessage = document.getElementById('errorMessage');
+      const errorCode = document.getElementById('errorCode');
+
+      if (errorMessage && errorCode) {
+        // Check if error contains MikroTik variable syntax
+        const errorText = errorMessage.textContent;
+        const codeText = errorCode.textContent;
+
+        if (errorText.includes('$(') || errorText.trim() === '') {
+          errorMessage.innerHTML = `
+            <p style="color: var(--color-error); margin: 0; font-weight: 500;">
+              Une erreur est survenue lors du traitement de votre demande.
+            </p>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-top: var(--spacing-sm); margin-bottom: 0;">
+              Veuillez réessayer ou contacter le support si le problème persiste.
+            </p>
+          `;
+        }
+
+        if (codeText.includes('$(') || codeText.trim() === '') {
+          errorCode.textContent = 'UNKNOWN_ERROR';
+        }
+      }
+
+      // Log error
+      if (window.ZanoonApp) {
+        window.ZanoonApp.log('Error page displayed', { url: window.location.href });
+      }
+    })();
+  </script>
+</body>
+</html>

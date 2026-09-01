@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zanoon - Service WiFi Premium">
+  <meta name="theme-color" content="#0f172a">
+  <title>Zanoon - Connexion WiFi</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button id="themeToggle" class="theme-toggle" title="Basculer le thème">🌙</button>
+
+  <div class="container">
+    <!-- Header with Logo -->
+    <header class="header">
+      <img src="assets/logo.svg" alt="Zanoon" class="logo">
+      <h1 class="header-title">Zanoon</h1>
+      <p class="header-subtitle">Bienvenue sur Zanoon Service WiFi</p>
+    </header>
+
+    <!-- Error Alert (if any) -->
+    <div id="errorContainer"></div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="card" action="$(link-login-only)" method="post">
+      <h2 style="text-align: center; margin-bottom: 1.5rem;">Connexion</h2>
+
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="login" 
+          placeholder="Entrez votre nom d'utilisateur"
+          required
+          autocomplete="username"
+          aria-required="true">
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Code</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Entrez votre code"
+          required
+          autocomplete="current-password"
+          aria-required="true">
+      </div>
+
+      <!-- Hidden Fields -->
+      <input type="hidden" name="dst" value="$(link-orig)">
+      <input type="hidden" name="popup" value="true">
+
+      <!-- Error Message Display (from MikroTik) -->
+      <div id="mikrotikError">
+        <!-- $(error) will be replaced by MikroTik -->
+        $(if error)
+          <div class="alert alert-error" role="alert">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-content">
+              <div class="alert-title">Erreur de connexion</div>
+              <p class="alert-message">$(error)</p>
+            </div>
+          </div>
+        $(endif)
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top: 2rem;">
+        Se connecter
+      </button>
+
+      <!-- Help Text -->
+      <p style="text-align: center; font-size: 0.85rem; margin-top: 1.5rem; color: var(--color-text-muted);">
+        Oubli ou problème de connexion ?<br>
+        Consultez la section d'aide ci-dessous
+      </p>
+    </form>
+
+    <!-- Service Information Section -->
+    <div class="divider"></div>
+
+    <!-- Rates Section -->
+    <section class="card">
+      <h3 style="text-align: center; margin-bottom: 1rem;">Nos tarifs</h3>
+      <p style="text-align: center; color: var(--color-text-secondary);">
+        Les tarifs et forfaits sont disponibles auprès de notre support.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Announcements Section -->
+    <section class="card">
+      <h3 style="text-align: center; margin-bottom: 1rem;">📢 Annonces</h3>
+      <p style="text-align: center; color: var(--color-text-muted);">
+        Aucune annonce pour le moment.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Support Section -->
+    <section class="card">
+      <h3 style="text-align: center; margin-bottom: 1.5rem;">Besoin d'aide ?</h3>
+      
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">📧 Email</div>
+          <a href="mailto:zanoon752@gmail.com" class="info-value" style="color: var(--color-primary);">
+            Envoyer un email
+          </a>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--color-text-muted);">
+            zanoon752@gmail.com
+          </p>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-label">📞 Téléphone</div>
+          <a href="tel:+261380134754" class="info-value" style="color: var(--color-primary);">
+            Appeler
+          </a>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--color-text-muted);">
+            +261 38 01 347 54
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p style="margin: 0;">© 2025 Zanoon. Tous droits réservés.</p>
+      <p style="margin: 0.5rem 0 0; font-size: 0.75rem; color: var(--color-text-muted);">
+        Service WiFi Premium Authentifié
+      </p>
+    </footer>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="js/app.js"></script>
+
+  <!-- Handle MikroTik error display -->
+  <script>
+    (function() {
+      // Check if MikroTik provided an error
+      const errorDiv = document.getElementById('mikrotikError');
+      if (errorDiv) {
+        const errorText = errorDiv.textContent.trim();
+        // If error div is empty or contains only template syntax, hide it
+        if (!errorText || errorText.includes('$(') || errorText.length < 5) {
+          errorDiv.style.display = 'none';
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
